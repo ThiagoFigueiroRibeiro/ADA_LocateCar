@@ -1,6 +1,8 @@
 package Model;
-
+import java.time.LocalDateTime;
 import java.util.Objects;
+import java.time.Duration;
+
 
 public class Veiculo{
     TipoVeiculo tipoVeiculo;
@@ -8,6 +10,8 @@ public class Veiculo{
     boolean estaAlugado;
     boolean placaJaExiste = false;
     ListaDeVeiculos lista;
+    LocalDateTime dataDoAluguel;
+    LocalDateTime dataDaDevolucao;
 
     public Veiculo(TipoVeiculo tipoVeiculo, String placa, ListaDeVeiculos lista) {
         for (Object veiculo : lista.lista) {
@@ -23,7 +27,7 @@ public class Veiculo{
             this.Placa = placa;
             this.lista = lista;
             lista.AddVeiculo(this);
-            boolean estaAlugado = false;
+            this.estaAlugado = false;
         }
     }
 
@@ -43,22 +47,31 @@ public class Veiculo{
         Placa = placa;
     }
 
-    public void alugar(Cliente cliente){
+    public void alugar(Cliente cliente, LocalDateTime dataDoAluguel){
         if (estaAlugado){
             System.out.println("Esse veículo já está alugado.");
         }
         else {
             cliente.veiculosAlugados.add(this);
+            this.dataDoAluguel = dataDoAluguel;
             estaAlugado = true;
         }
     }
-    public void devolver(Cliente cliente){
+    public void devolver(Cliente cliente, LocalDateTime dataDaDevolucao){
         if (!estaAlugado){
             System.out.println("Esse veículo não está alugado.");
         }
         else {
             cliente.veiculosAlugados.remove(this);
+            this.dataDaDevolucao = dataDaDevolucao;
+            Duration diff = Duration.between(dataDoAluguel,dataDaDevolucao);
+            System.out.println("Esse veiculo ficou alugado por " + diff.toDays() + " dias" );
             estaAlugado = false;
         }
+    }
+
+    public long DiasAlugados() {
+        Duration diff = Duration.between(dataDoAluguel,dataDaDevolucao);
+        return diff.toDays();
     }
 }

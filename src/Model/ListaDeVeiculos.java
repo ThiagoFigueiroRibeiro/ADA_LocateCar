@@ -1,5 +1,4 @@
 package Model;
-
 import java.util.ArrayList;
 
 public class ListaDeVeiculos {
@@ -22,7 +21,6 @@ public class ListaDeVeiculos {
             }
         }
     }
-
     public void ProcurarVeiculo(String placa){
         if (lista.isEmpty()){
             System.out.println("Lista atualmente vazia.");
@@ -36,12 +34,11 @@ public class ListaDeVeiculos {
             }
         }
     }
-
     void ShowStatus(Veiculo veiculoAtual){
         System.out.print(veiculoAtual.getPlaca());
         System.out.print(", " + veiculoAtual.getTipo());
         if (veiculoAtual.estaAlugado){
-            System.out.println(", Está alugado");
+            System.out.print(", Está alugado desde " + veiculoAtual.dataDoAluguel);
         }
         else{
             System.out.println(", Está disponível");
