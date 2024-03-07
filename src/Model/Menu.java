@@ -83,7 +83,9 @@ public class Menu{
             default:
         }
     }
-    void ExibirClientes(){}
+    void ExibirClientes(){
+        listaDeClientes.MostrarClientes();
+    }
     void AdicionarCarro(){
         Veiculo Corsa = new Veiculo(TipoVeiculo.PEQUENO, "ABC-1234", listaDeVeiculos);
     }
