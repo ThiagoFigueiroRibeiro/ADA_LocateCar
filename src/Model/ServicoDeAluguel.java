@@ -8,7 +8,6 @@ public class ServicoDeAluguel {
     public static void AlugarVeiculo(Veiculo veiculo, Cliente cliente){
         LocalDateTime dataDoAluguel = PerguntarData();
         veiculo.alugar(cliente,dataDoAluguel);
-
     }
 
     public static void DevolverVeiculo(Veiculo veiculo, Cliente cliente){

@@ -4,7 +4,7 @@ public class Main {
         ListaDeVeiculos listaDeVeiculos = new ListaDeVeiculos();
         ListaDeClientes listaDeClientes = new ListaDeClientes();
         Model.Menu menu = new Model.Menu(listaDeVeiculos,listaDeClientes);
+        menu.CriarDadosExemplo();
         menu.ExibirMenu();
-
     }
 }

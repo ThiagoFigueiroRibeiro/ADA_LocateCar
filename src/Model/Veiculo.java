@@ -12,6 +12,7 @@ public class Veiculo{
     ListaDeVeiculos lista;
     LocalDateTime dataDoAluguel;
     LocalDateTime dataDaDevolucao;
+    Cliente clienteQueOVeiculoEstaAlugado;
 
     public Veiculo(TipoVeiculo tipoVeiculo, String placa, ListaDeVeiculos lista) {
         for (Object veiculo : lista.lista) {
@@ -28,6 +29,7 @@ public class Veiculo{
             this.lista = lista;
             lista.AddVeiculo(this);
             this.estaAlugado = false;
+            this.clienteQueOVeiculoEstaAlugado = null;
         }
     }
 
@@ -54,7 +56,8 @@ public class Veiculo{
         else {
             cliente.veiculosAlugados.add(this);
             this.dataDoAluguel = dataDoAluguel;
-            estaAlugado = true;
+            this.estaAlugado = true;
+            this.clienteQueOVeiculoEstaAlugado = cliente;
         }
     }
     public void devolver(Cliente cliente, LocalDateTime dataDaDevolucao){
@@ -66,12 +69,16 @@ public class Veiculo{
             this.dataDaDevolucao = dataDaDevolucao;
             Duration diff = Duration.between(dataDoAluguel,dataDaDevolucao);
             System.out.println("Esse veiculo ficou alugado por " + diff.toDays() + " dias" );
-            estaAlugado = false;
+            this.estaAlugado = false;
+            this.clienteQueOVeiculoEstaAlugado = null;
         }
     }
 
     public long DiasAlugados() {
         Duration diff = Duration.between(dataDoAluguel,dataDaDevolucao);
         return diff.toDays();
+    }
+    public Veiculo RetornoDeVeiculo(){
+        return this;
     }
 }

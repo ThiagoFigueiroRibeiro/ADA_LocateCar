@@ -22,6 +22,7 @@ public class ListaDeVeiculos {
         }
     }
     public void ProcurarVeiculo(String placa){
+        boolean achouCarro = false;
         if (lista.isEmpty()){
             System.out.println("Lista atualmente vazia.");
         }
@@ -30,15 +31,19 @@ public class ListaDeVeiculos {
                 Veiculo veiculoAtual = (Veiculo) veiculo;
                 if(veiculoAtual.getPlaca().contains(placa)) {
                     ShowStatus(veiculoAtual);
+                    achouCarro = true;
                 }
             }
+        }
+        if (!achouCarro){
+            System.out.println("Não achamos carro com essa placa.");
         }
     }
     void ShowStatus(Veiculo veiculoAtual){
         System.out.print(veiculoAtual.getPlaca());
         System.out.print(", " + veiculoAtual.getTipo());
         if (veiculoAtual.estaAlugado){
-            System.out.print(", Está alugado desde " + veiculoAtual.dataDoAluguel);
+            System.out.println(", Está alugado desde " + veiculoAtual.dataDoAluguel);
         }
         else{
             System.out.println(", Está disponível");
