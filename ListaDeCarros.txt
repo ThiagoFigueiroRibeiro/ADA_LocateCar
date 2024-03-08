@@ -1,0 +1,3 @@
+ABC-1234, PEQUENO, Está disponível.
+CBA-4321, MEDIO, Está disponível.
+XYZ-1124, SUV, Está disponível.

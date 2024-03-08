@@ -1,5 +1,7 @@
 package Model;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu{
@@ -38,6 +40,9 @@ public class Menu{
             case 7:
                 PesquisarCarro();
                 break;
+            case 8:
+                SalvarDados();
+                break;
             case 0:
                 System.exit(0);
             default:
@@ -56,6 +61,7 @@ public class Menu{
             System.out.println("5 - Alugar Carro");
             System.out.println("6 - Devolver Carro");
             System.out.println("7 - Pesquisar Carro");
+            System.out.println("8 - Salvar dados");
             System.out.println("0 - Sair do programa");
             Opcoes();
         }
@@ -201,6 +207,11 @@ public class Menu{
         else {
             System.out.println("Não existem carros alugados aqui");
         }
+    }
+
+    void SalvarDados(){
+        listaDeVeiculos.SalvarDados();
+        listaDeClientes.SalvarDados();
     }
 
     public void CriarDadosExemplo(){

@@ -1,4 +1,6 @@
 package Model;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ListaDeVeiculos {
@@ -12,7 +14,7 @@ public class ListaDeVeiculos {
     }
      void MostrarVeiculos(){
         if (lista.isEmpty()){
-            System.out.println("Lista atualmente vazia.");
+            System.out.println("Lista de veículos atualmente vazia.");
         }
         else {
             for (Object veiculo : lista) {
@@ -47,6 +49,33 @@ public class ListaDeVeiculos {
         }
         else{
             System.out.println(", Está disponível");
+        }
+    }
+
+    void SalvarDados(){
+        try{
+            FileWriter fileWriter = new FileWriter("ListaDeCarros.txt");
+            if (lista.isEmpty()){
+                fileWriter.write("Lista de veículos atualmente vazia.");
+            }
+            else {
+                for (Veiculo veiculo : lista) {
+                    if (veiculo.estaAlugado){
+                        fileWriter.write(veiculo.getPlaca() + ", "
+                                + veiculo.getTipo() + ", "
+                                + "Está alugado desde " + veiculo.dataDoAluguel +"\n");
+                    }
+                    else{
+                        fileWriter.write(veiculo.getPlaca() + ", "
+                                + veiculo.getTipo() + ", "
+                                + "Está disponível.\n");
+                    }
+                }
+            }
+            fileWriter.close();
+        } catch (IOException ioException) {
+            System.out.println("Algo deu errado na gravação da lista de veículos...");
+            ioException.printStackTrace();
         }
     }
 }
