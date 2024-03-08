@@ -2,15 +2,15 @@ package Model;
 import java.util.ArrayList;
 
 public class ListaDeVeiculos {
-    ArrayList lista;
+    ArrayList<Veiculo> lista;
 
     public ListaDeVeiculos() {
-        this.lista = new ArrayList();
+        this.lista = new ArrayList<>();
     }
-    public void AddVeiculo(Veiculo veiculo){
+     void AddVeiculo(Veiculo veiculo){
         lista.add(veiculo);
     }
-    public void MostrarVeiculos(){
+     void MostrarVeiculos(){
         if (lista.isEmpty()){
             System.out.println("Lista atualmente vazia.");
         }
@@ -21,7 +21,7 @@ public class ListaDeVeiculos {
             }
         }
     }
-    public void ProcurarVeiculo(String placa){
+     void ProcurarVeiculo(String placa){
         boolean achouCarro = false;
         if (lista.isEmpty()){
             System.out.println("Lista atualmente vazia.");

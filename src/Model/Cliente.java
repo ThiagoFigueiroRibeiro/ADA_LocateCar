@@ -2,19 +2,18 @@ package Model;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Cliente {
+ class Cliente {
     String nome;
     TipoCliente tipoCliente;
     int numeroIdentificador;
     boolean numeroIdentificadorJaExiste = false;
-    ArrayList veiculosAlugados = new ArrayList<>();
+    ArrayList<Veiculo> veiculosAlugados = new ArrayList<>();
     ListaDeClientes listaDeClientes;
 
-    public Cliente(String nome, TipoCliente tipoCliente, int numeroIdentificador, ListaDeClientes listaDeClientes) {
+     Cliente(String nome, TipoCliente tipoCliente, int numeroIdentificador, ListaDeClientes listaDeClientes) {
 
-        for (Object cliente : listaDeClientes.lista) {
-            Cliente ClienteAtual = (Cliente) cliente;
-            if (Objects.equals(ClienteAtual.getNumeroIdentificador(), numeroIdentificador)){
+        for (Cliente cliente : listaDeClientes.lista) {
+            if (Objects.equals(cliente.getNumeroIdentificador(), numeroIdentificador)){
                 System.out.println("Um cliente com esse CPF/CNPJ já está cadastrado no sistema.");
                 numeroIdentificadorJaExiste = true;
                 break;
@@ -28,35 +27,35 @@ public class Cliente {
         }
     }
 
-    public String getNome() {
+     String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
+     void setNome(String nome) {
         this.nome = nome;
     }
 
-    public TipoCliente getTipoCliente() {
+     TipoCliente getTipoCliente() {
         return tipoCliente;
     }
 
-    public void setTipoCliente(TipoCliente tipoCliente) {
+     void setTipoCliente(TipoCliente tipoCliente) {
         this.tipoCliente = tipoCliente;
     }
 
-    public int getNumeroIdentificador() {
+     int getNumeroIdentificador() {
         return numeroIdentificador;
     }
 
-    public void setNumeroIdentificador(int numeroIdentificador) {
+     void setNumeroIdentificador(int numeroIdentificador) {
         this.numeroIdentificador = numeroIdentificador;
     }
 
-    public ArrayList getVeiculosAlugados() {
+     ArrayList<Veiculo> getVeiculosAlugados() {
         return veiculosAlugados;
     }
 
-    public void setVeiculosAlugados(ArrayList veiculosAlugados) {
+     void setVeiculosAlugados(ArrayList<Veiculo> veiculosAlugados) {
         this.veiculosAlugados = veiculosAlugados;
     }
 }

@@ -5,10 +5,12 @@ import java.util.Scanner;
 public class Menu{
     ListaDeVeiculos listaDeVeiculos;
     ListaDeClientes listaDeClientes;
+    ServicoDeAluguel servicoDeAluguel;
 
-    public Menu(ListaDeVeiculos listaDeVeiculos, ListaDeClientes listaDeClientes) {
+    public Menu(ListaDeVeiculos listaDeVeiculos, ListaDeClientes listaDeClientes, ServicoDeAluguel servicoDeAluguel) {
         this.listaDeVeiculos = listaDeVeiculos;
         this.listaDeClientes = listaDeClientes;
+        this.servicoDeAluguel = servicoDeAluguel;
     }
 
     void Opcoes(){
@@ -135,26 +137,24 @@ public class Menu{
             System.out.println("Qual é a placa do carro que você quer alugar?");
             Scanner keyProcurarCarro = new Scanner(System.in);
             String placa = keyProcurarCarro.nextLine();
-            Veiculo veiculo = (Veiculo) listaDeVeiculos.lista.getFirst(); // Gambiarra da forte
+            Veiculo veiculo = listaDeVeiculos.lista.getFirst(); // Gambiarra da forte
 
             System.out.println("Qual é o CPF/CNPJ do cliente que quer alugar?");
             Scanner keyProcurarNI = new Scanner(System.in);
             int NI = keyProcurarNI.nextInt();
-            Cliente cliente = (Cliente) listaDeClientes.lista.getFirst(); // Gambiarra da forte
+            Cliente cliente = listaDeClientes.lista.getFirst(); // Gambiarra da forte
 
-            for(Object V: listaDeVeiculos.lista){
-                Veiculo esteCarro = (Veiculo) V;
-                if (esteCarro.getPlaca().equals(placa)){
-                    veiculo = esteCarro;
+            for(Veiculo V: listaDeVeiculos.lista){
+                if (V.getPlaca().equals(placa)){
+                    veiculo = V;
                     carroExiste = true;
                     break;
                 }
             }
 
-            for(Object K: listaDeClientes.lista){
-                Cliente esteCliente = (Cliente) K;
-                if (esteCliente.getNumeroIdentificador()==NI){
-                    cliente = esteCliente;
+            for(Cliente K: listaDeClientes.lista){
+                if (K.getNumeroIdentificador()==NI){
+                    cliente = K;
                     clienteExiste = true;
                     break;
                 }
@@ -164,7 +164,7 @@ public class Menu{
                     System.out.println("Esse veículo já está alugado.");
                 }
                 else {
-                    ServicoDeAluguel.AlugarVeiculo(veiculo, cliente);
+                    servicoDeAluguel.AlugarVeiculo(veiculo, cliente);
                 }
             }
             else {
@@ -181,19 +181,18 @@ public class Menu{
             System.out.println("Qual é a placa do carro que você quer alugar?");
             Scanner keyProcurarCarro = new Scanner(System.in);
             String placa = keyProcurarCarro.nextLine();
-            Veiculo veiculo = (Veiculo) listaDeVeiculos.lista.getFirst(); // Gambiarra da forte
+            Veiculo veiculo = listaDeVeiculos.lista.getFirst(); // Gambiarra da forte
 
-            for(Object V: listaDeVeiculos.lista){
-                Veiculo esteCarro = (Veiculo) V;
-                if (esteCarro.getPlaca().equals(placa)){
-                    veiculo = esteCarro;
+            for(Veiculo V: listaDeVeiculos.lista){
+                if (V.getPlaca().equals(placa)){
+                    veiculo = V;
                     carroExiste = true;
                     break;
                 }
             }
 
             if (carroExiste&&veiculo.estaAlugado){
-                ServicoDeAluguel.DevolverVeiculo(veiculo,veiculo.clienteQueOVeiculoEstaAlugado);
+                servicoDeAluguel.DevolverVeiculo(veiculo,veiculo.clienteQueOVeiculoEstaAlugado);
             }
             else {
                 System.out.println("O carro com essa placa não existe ou não está alugado.");

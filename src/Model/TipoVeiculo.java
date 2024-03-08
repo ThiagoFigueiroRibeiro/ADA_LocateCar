@@ -1,3 +1,3 @@
 package Model;
 
-public enum TipoVeiculo {PEQUENO, MEDIO, SUV}
+enum TipoVeiculo {PEQUENO, MEDIO, SUV}

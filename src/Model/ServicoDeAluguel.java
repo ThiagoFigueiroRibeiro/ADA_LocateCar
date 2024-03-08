@@ -4,24 +4,24 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Scanner;
 
-public class ServicoDeAluguel {
-    public static void AlugarVeiculo(Veiculo veiculo, Cliente cliente){
+ public class ServicoDeAluguel {
+     void AlugarVeiculo(Veiculo veiculo, Cliente cliente){
         LocalDateTime dataDoAluguel = PerguntarData();
         veiculo.alugar(cliente,dataDoAluguel);
     }
 
-    public static void DevolverVeiculo(Veiculo veiculo, Cliente cliente){
+     void DevolverVeiculo(Veiculo veiculo, Cliente cliente){
         LocalDateTime dataDaDevolucao = PerguntarData();
         veiculo.devolver(cliente, dataDaDevolucao);
         ExibirCustoTotalDeAluguel(cliente,veiculo);
     }
 
-    public static void ExibirCustoTotalDeAluguel(Cliente cliente, Veiculo veiculo){
+     void ExibirCustoTotalDeAluguel(Cliente cliente, Veiculo veiculo){
         BigDecimal total = calcularCustoTotal(cliente,veiculo,veiculo.DiasAlugados());
         System.out.println("O custo total de aluguel é de R$ " + total);
     }
 
-    public static BigDecimal calcularCustoTotal(Cliente cliente, Veiculo veiculo, long DiasAlugados){
+     BigDecimal calcularCustoTotal(Cliente cliente, Veiculo veiculo, long DiasAlugados){
         BigDecimal custoTotal = BigDecimal.valueOf(0.0);
         //CPF
         if (cliente.getTipoCliente()==TipoCliente.CPF && DiasAlugados > 5){
@@ -37,7 +37,7 @@ public class ServicoDeAluguel {
         return custoTotal;
     }
 
-    static int valoresDiariasPorTipo(Veiculo veiculo){
+     int valoresDiariasPorTipo(Veiculo veiculo){
         int valor = 0;
         if(veiculo.getTipo()==TipoVeiculo.PEQUENO){valor = 100;}
         else if(veiculo.getTipo()==TipoVeiculo.MEDIO){valor = 150;}
@@ -45,7 +45,7 @@ public class ServicoDeAluguel {
         return valor;
     }
 
-    static LocalDateTime PerguntarData(){
+     LocalDateTime PerguntarData(){
         System.out.println("Qual é o mes que você quer alugar o carro? (1 a 12)");
         Scanner keyboard = new Scanner(System.in);
         int myint = keyboard.nextInt();

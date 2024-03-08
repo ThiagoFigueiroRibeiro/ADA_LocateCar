@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.time.Duration;
 
 
-public class Veiculo{
+ class Veiculo{
     TipoVeiculo tipoVeiculo;
     String Placa;
     boolean estaAlugado;
@@ -14,10 +14,9 @@ public class Veiculo{
     LocalDateTime dataDaDevolucao;
     Cliente clienteQueOVeiculoEstaAlugado;
 
-    public Veiculo(TipoVeiculo tipoVeiculo, String placa, ListaDeVeiculos lista) {
-        for (Object veiculo : lista.lista) {
-            Veiculo veiculoAtual = (Veiculo) veiculo;
-            if (Objects.equals(veiculoAtual.getPlaca(), placa)){
+     Veiculo(TipoVeiculo tipoVeiculo, String placa, ListaDeVeiculos lista) {
+        for (Veiculo veiculo : lista.lista) {
+            if (Objects.equals(veiculo.getPlaca(), placa)){
                 System.out.println("Um outro veículo com essa placa já existe");
                 placaJaExiste = true;
                 break;
@@ -33,23 +32,23 @@ public class Veiculo{
         }
     }
 
-    public TipoVeiculo getTipo() {
+     TipoVeiculo getTipo() {
         return tipoVeiculo;
     }
 
-    public boolean isAlugado() {
+     boolean isAlugado() {
         return estaAlugado;
     }
 
-    public String getPlaca() {
+     String getPlaca() {
         return Placa;
     }
 
-    public void setPlaca(String placa) {
+     void setPlaca(String placa) {
         Placa = placa;
     }
 
-    public void alugar(Cliente cliente, LocalDateTime dataDoAluguel){
+     void alugar(Cliente cliente, LocalDateTime dataDoAluguel){
         if (estaAlugado){
             System.out.println("Esse veículo já está alugado.");
         }
@@ -60,7 +59,7 @@ public class Veiculo{
             this.clienteQueOVeiculoEstaAlugado = cliente;
         }
     }
-    public void devolver(Cliente cliente, LocalDateTime dataDaDevolucao){
+     void devolver(Cliente cliente, LocalDateTime dataDaDevolucao){
         if (!estaAlugado){
             System.out.println("Esse veículo não está alugado.");
         }
@@ -74,11 +73,11 @@ public class Veiculo{
         }
     }
 
-    public long DiasAlugados() {
+     long DiasAlugados() {
         Duration diff = Duration.between(dataDoAluguel,dataDaDevolucao);
         return diff.toDays();
     }
-    public Veiculo RetornoDeVeiculo(){
+     Veiculo RetornoDeVeiculo(){
         return this;
     }
 }

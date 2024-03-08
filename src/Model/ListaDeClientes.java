@@ -1,19 +1,19 @@
 package Model;
 import java.util.ArrayList;
 public class ListaDeClientes {
-    ArrayList lista;
+    ArrayList<Cliente> lista;
     public ListaDeClientes() {
-        this.lista = new ArrayList();
+        this.lista = new ArrayList<>();
     }
-    public void AddCliente(Cliente cliente){
+     void AddCliente(Cliente cliente){
         lista.add(cliente);
     }
 
-    public ArrayList getLista() {
+     ArrayList<Cliente> getLista() {
         return lista;
     }
 
-    public void MostrarClientes(){
+     void MostrarClientes(){
         if (lista.isEmpty()){
             System.out.println("Lista atualmente vazia.");
         }

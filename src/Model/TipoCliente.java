@@ -1,3 +1,3 @@
 package Model;
 
-public enum TipoCliente {CPF, CNPJ}
+enum TipoCliente {CPF, CNPJ}
